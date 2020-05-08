@@ -4,11 +4,21 @@ import './index.css';
 import App from './Containers/App'
 import * as serviceWorker from './serviceWorker';
 import 'tachyons'
-import {robots} from "./robots";
+import {Provider} from "react-redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
+import {requestRobots, searchRobots} from "./reducers";
+import {createLogger} from "redux-logger";
+import thunkMiddleware from 'redux-thunk';
+
+const logger = createLogger();
+const rootReducer = combineReducers({searchRobots, requestRobots});
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
     <React.StrictMode>
-        <App robots={robots}/>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </React.StrictMode>,
     document.getElementById('root')
 );
