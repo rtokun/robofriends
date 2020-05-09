@@ -4,7 +4,7 @@ const initialStateSearch = {
     searchField: ''
 };
 
-export const searchRobots = (state = initialStateSearch, action = {}) => {
+export const searchRobotsReducer = (state = initialStateSearch, action = {}) => {
     switch (action.type) {
         case CHANGE_SEARCH_FIELD:
             return {...state, searchField: action.payload};
@@ -13,14 +13,14 @@ export const searchRobots = (state = initialStateSearch, action = {}) => {
     }
 };
 
-const intialStateRobots = {
+const initialStateRobots = {
     isPending: false,
     robots: [],
     error: ''
 };
 
 
-export const requestRobots = (state = intialStateRobots, action = {}) => {
+export const requestRobotsReducer = (state = initialStateRobots, action = {}) => {
     switch (action.type) {
         case REQUEST_ROBOTS_PENDING:
             return {...state, isPending: true};
